@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>BigFCat</title>
   
   <subtitle>你还有很多未完成的梦，还有什么理由停下脚步?</subtitle>
   <link href="/atom.xml" rel="self"/>
