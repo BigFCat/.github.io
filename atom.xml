@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-21T10:41:04.326Z</updated>
+  <updated>2018-05-22T02:38:51.741Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IO多路复用(epool)</title>
+    <link href="http://yoursite.com/2018/05/22/socket_epoll/"/>
+    <id>http://yoursite.com/2018/05/22/socket_epoll/</id>
+    <published>2018-05-22T02:38:51.741Z</published>
+    <updated>2018-05-22T02:38:51.741Z</updated>
+    
+    <content type="html"><![CDATA[<p>实现效果：服务端接收所有客户端的请求，并接收数据，在原封不动的把数据返回给客户端。</p><p>服务端代码：<br>    import selectors  ##使用epoll<br>import socket</p><p>##实例化/生成一个选择器。 这个选择器会根据操作系统来决定用epoll还是selector(selec是windows的io多路复用)<br>e_selector = selectors.DefaultSelector()  # 默认是根据系统来选择。windows没有epoll，windows就会选择selector</p><p>##e_selector = selectors.EpollSelector() 或者使用这一行代码 代替上面一行</p><p>server = socket.socket()<br>server.bind((‘’, 9999))<br>server.listen(5)</p><p>def c_recv(con):<br>    data = con.recv(1000)<br>    if data:<br>        print(‘接收到客户端的数据：’, data.decode())<br>        con.send(data)<br>    else:<br>        con.close()<br>        e_selector.unregister(con)  # 取消注册事件</p><p>def s_accept(server):  ##形参server<br>    con, addr = server.accept()<br>    e_selector.register(con, selectors.EVENT_READ, c_recv)</p><h1 id="注册事件-对象，-可读事件，-回调函数"><a href="#注册事件-对象，-可读事件，-回调函数" class="headerlink" title="注册事件              对象，      可读事件，       回调函数"></a>注册事件              对象，      可读事件，       回调函数</h1><p>e_selector.register(server, selectors.EVENT_READ, s_accept)</p><h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><p>while True:<br>    events = e_selector.select()</p><pre><code># print(events)for key, mask in events:    callback = key.data    callback(key.fileobj)  # 本质是调用的s_accpet</code></pre><p>客户端代码：<br>    import socket</p><p>client = socket.socket()<br>client.connect((‘127.0.0.1’, 9999))<br>while True:<br>    msg = input(‘&gt;&gt;’)<br>    client.send(msg.encode(‘utf-8’))<br>    data = client.recv(1000)<br>    if data:<br>        print(‘接收到服务端的数据:’, data.decode())</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;实现效果：服务端接收所有客户端的请求，并接收数据，在原封不动的把数据返回给客户端。&lt;/p&gt;
+&lt;p&gt;服务端代码：&lt;br&gt;    import selectors  ##使用epoll&lt;br&gt;import socket&lt;/p&gt;
+&lt;p&gt;##实例化/生成一个选择器。 这个选择器会根
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>测试</title>

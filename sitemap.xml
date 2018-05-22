@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/05/22/socket_epoll/</loc>
+    
+    <lastmod>2018-05-22T02:38:51.741Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/05/21/note1/</loc>
     
     <lastmod>2018-05-21T10:41:04.326Z</lastmod>

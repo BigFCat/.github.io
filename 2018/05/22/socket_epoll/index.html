@@ -82,17 +82,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="实现效果：服务端接收所有客户端的请求，并接收数据，在原封不动的把数据返回给客户端。 服务端代码：    import selectors  ##使用epollimport socket ##实例化/生成一个选择器。 这个选择器会根据操作系统来决定用epoll还是selector(selec是windows的io多路复用)e_selector = selectors.DefaultSelector(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/05/19/hello-world/index.html">
+<meta property="og:title" content="IO多路复用(epool)">
+<meta property="og:url" content="http://yoursite.com/2018/05/22/socket_epoll/index.html">
 <meta property="og:site_name" content="BigFCat">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="实现效果：服务端接收所有客户端的请求，并接收数据，在原封不动的把数据返回给客户端。 服务端代码：    import selectors  ##使用epollimport socket ##实例化/生成一个选择器。 这个选择器会根据操作系统来决定用epoll还是selector(selec是windows的io多路复用)e_selector = selectors.DefaultSelector(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-19T07:26:54.090Z">
+<meta property="og:updated_time" content="2018-05-22T02:38:51.741Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="IO多路复用(epool)">
+<meta name="twitter:description" content="实现效果：服务端接收所有客户端的请求，并接收数据，在原封不动的把数据返回给客户端。 服务端代码：    import selectors  ##使用epollimport socket ##实例化/生成一个选择器。 这个选择器会根据操作系统来决定用epoll还是selector(selec是windows的io多路复用)e_selector = selectors.DefaultSelector(">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/19/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/22/socket_epoll/"/>
 
 
 
 
 
-  <title>Hello World | BigFCat</title>
+  <title>IO多路复用(epool) | BigFCat</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/19/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/socket_epoll/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="uprain">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">IO多路复用(epool)</h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-19T15:26:54+08:00">
-                2018-05-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T10:38:51+08:00">
+                2018-05-22
               </time>
             
 
@@ -290,6 +290,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -318,15 +340,21 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>实现效果：服务端接收所有客户端的请求，并接收数据，在原封不动的把数据返回给客户端。</p>
+<p>服务端代码：<br>    import selectors  ##使用epoll<br>import socket</p>
+<p>##实例化/生成一个选择器。 这个选择器会根据操作系统来决定用epoll还是selector(selec是windows的io多路复用)<br>e_selector = selectors.DefaultSelector()  # 默认是根据系统来选择。windows没有epoll，windows就会选择selector</p>
+<p>##e_selector = selectors.EpollSelector() 或者使用这一行代码 代替上面一行</p>
+<p>server = socket.socket()<br>server.bind((‘’, 9999))<br>server.listen(5)</p>
+<p>def c_recv(con):<br>    data = con.recv(1000)<br>    if data:<br>        print(‘接收到客户端的数据：’, data.decode())<br>        con.send(data)<br>    else:<br>        con.close()<br>        e_selector.unregister(con)  # 取消注册事件</p>
+<p>def s_accept(server):  ##形参server<br>    con, addr = server.accept()<br>    e_selector.register(con, selectors.EVENT_READ, c_recv)</p>
+<h1 id="注册事件-对象，-可读事件，-回调函数"><a href="#注册事件-对象，-可读事件，-回调函数" class="headerlink" title="注册事件              对象，      可读事件，       回调函数"></a>注册事件              对象，      可读事件，       回调函数</h1><p>e_selector.register(server, selectors.EVENT_READ, s_accept)</p>
+<h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><p>while True:<br>    events = e_selector.select()</p>
+<pre><code># print(events)
+for key, mask in events:
+    callback = key.data
+    callback(key.fileobj)  # 本质是调用的s_accpet
+</code></pre><p>客户端代码：<br>    import socket</p>
+<p>client = socket.socket()<br>client.connect((‘127.0.0.1’, 9999))<br>while True:<br>    msg = input(‘&gt;&gt;’)<br>    client.send(msg.encode(‘utf-8’))<br>    data = client.recv(1000)<br>    if data:<br>        print(‘接收到服务端的数据:’, data.decode())</p>
 
       
     </div>
@@ -351,15 +379,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/21/note1/" rel="next" title="测试">
+                <i class="fa fa-chevron-left"></i> 测试
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/21/1我的测试网页/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -489,7 +517,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注册事件-对象，-可读事件，-回调函数"><span class="nav-number">1.</span> <span class="nav-text">注册事件              对象，      可读事件，       回调函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件循环"><span class="nav-number">2.</span> <span class="nav-text">事件循环</span></a></li></ol></div>
             
 
           </div>
